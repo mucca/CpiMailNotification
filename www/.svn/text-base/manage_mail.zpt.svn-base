@@ -1,0 +1,64 @@
+<html tal:omit-tag="">
+<h1 tal:replace="structure here/manage_page_header">Header</h1>
+<h2
+  tal:define="manage_tabs_message options/manage_tabs_message | request/manage_tabs_message | nothing"
+  tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h2>Mail Notification Tool Configurations </h2>
+
+    <!--
+        <fieldset tal:define="notifierStatesList python:here.getNotifiersForWorkFlow(selectedMailer)" tal:condition="notifierStatesList">   
+            <legend><b>Active Notifiers</b></legend>
+            <div tal:repeat="state notifierStatesList">
+                <ul>
+                    <li tal:repeat="notifier python:notifierStatesList[state]">
+                        <div tal:define=" attributesList python:['mail_ccn_groups', 'mail_cc_roles', 'mail_to_roles', 'mail_body_dtml', 'mail_header_expression', 'mail_to_list', 'mail_to_groups', 'mail_ccn_list', 'mail_ccn_roles', 'mail_cc_list', 'mail_cc_groups']">
+                            <asd tal:replace="python: notifier " /><br>
+                            
+                            <input type=button value=delete href=delete_url>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+                
+        </fieldset>
+    -->
+
+<ol>
+    <ul style="padding:10">
+        <li tal:repeat="wf here/portal_workflow/listWorkflows" >
+            <div style="float:left" tal:condition="python:hasattr(here,wf)" > 
+                <a tal:attributes="href python:here.absolute_url() + '/' + wf  + '/manage_workspace' ">
+                <asd tal:replace="wf"/> (<asd tal:replace="python:len(here.getNotifiersForWorkFlow(wf))" />)
+                </a>
+            </div>
+            <div style="float:left" tal:condition="python:not hasattr(here,wf)" > 
+            <asd tal:replace="wf"/>(<asd tal:replace="python:len(here.getNotifiersForWorkFlow(wf))" />)
+            </div>
+            <div>
+                <a tal:attributes="href python:here.absolute_url() + '/manage_mailer?selected_mailer=%s' %wf "> 
+                (Add New)
+                </a>
+            </div>
+        </li>
+<!---
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+aaaa<asd tal:content="python:here.getParentNode()"/>
+              <li tal:repeat="BE python:[x for x in here.getParentNode().getChildNodes() if x.meta_type=='BaseEntity']" >bb
+              <asd tal:repeat="wf python:[x.getChildNodes() for x in BE.getChildNodes() if '.portal_workflow' in x.id]" >sss
+            <div style="float:left"  tal:content="wf/id"> 
+              
+            </div>
+            
+            <div>
+                <a tal:attributes="href python:wf.absolute_url() + '/manage_mailer?selected_mailer=%s' %wf "> 
+                (Add New)
+                </a>
+            </div>
+            </asd>
+        </li>-->
+    </ul>
+</ol>
+
+<h1 tal:replace="structure here/manage_page_footer">Footer</h1>
+</html>

@@ -1,0 +1,56 @@
+<html tal:omit-tag="">
+<h1 tal:replace="structure here/manage_page_header">Header</h1>
+<h2
+  tal:define="manage_tabs_message options/manage_tabs_message | request/manage_tabs_message | nothing"
+  tal:replace="structure here/manage_tabs">Tabs</h2>
+
+    <ol>      
+        <h2> Edit <asd tal:replace="here/id" /> </h2>
+        <fieldset>
+        <legend> <b> Fields </b> </legend>
+            <form tal:attributes="action here/absolute_url">
+                <p>
+                mail from expression : ( must return an address )<br>
+                <input size=50 name=mail_from_expression tal:attributes="value python: here.getExpressionText(here.mail_from_expression)"> <a target="_blank" tal:attributes="href string:${here/absolute_url}/exprDocs">[Help]</a><br>
+                
+                <p id="mail-metadatas">
+                mail id expression : ( must return a valid mail id example "&lt;a09dgjad9h8vdasc8mh@cpiprogetti.it&gt;" )<br>
+                <input size=50 name="message_id_expression" tal:attributes="value python: here.getExpressionText(here.message_id_expression)"> <a target="_blank" tal:attributes="href string:${here/absolute_url}/exprDocs">[Help]</a><br>
+                in replay to expression : ( must return a valid mail id example "&lt;a09dgjad9h8vdasc8mh@cpiprogetti.it&gt;" )<br>
+                <input size=50 name="in_replay_to_expression" tal:attributes="value python: here.getExpressionText(here.in_replay_to_expression)"> <a target="_blank" tal:attributes="href string:${here/absolute_url}/exprDocs">[Help]</a><br>
+                
+                <p id="mail_to_parameters">
+                mail to expression ( must return a list of email ): <br>
+                <input size=50 name=mail_to_expression tal:attributes="value python:here.getExpressionText(here.mail_to_expression)"> <a target="_blank" tal:attributes="href string:${here/absolute_url}/exprDocs">[Help]</a><br>
+                mail to address list : <input name=mail_to_list tal:attributes="value python: ','.join(here.mail_to_list) "><br>
+                mail to roles list: <input name=mail_to_roles tal:attributes="value python: ','.join(here.mail_to_roles )" ><br>
+                mail to groups list: <input name=mail_to_groups tal:attributes="value python: ','.join(here.mail_to_groups)" ><br>
+                
+                <p id="mail_cc_parameters">
+                mail cc expression (must return a list of email ): <br>
+                <input size=50 name=mail_cc_expression tal:attributes="value python:here.getExpressionText(here.mail_cc_expression)"> <a target="_blank" tal:attributes="href string:${here/absolute_url}/exprDocs">[Help]</a><br>
+                mail cc address list : <input name=mail_cc_list tal:attributes="value python: ','.join(here.mail_cc_list)"><br>
+                mail cc roles list: <input name=mail_cc_roles tal:attributes="value python: ','.join(here.mail_cc_roles)"><br>
+                mail cc groups list: <input name=mail_cc_groups tal:attributes="value python: ','.join(here.mail_cc_groups)"><br>
+                
+                <p id="mail_ccn_parameters" >
+                mail ccn expression ( must return a list of email ): <br>
+                <input size=50 name=mail_ccn_expression tal:attributes="value python:here.getExpressionText(here.mail_ccn_expression)"> <a target="_blank" tal:attributes="href string:${here/absolute_url}/exprDocs">[Help]</a><br>
+                mail ccn address list : <input name=mail_ccn_list tal:attributes="value python: ','.join(here.mail_ccn_list)"><br>
+                mail ccn roles list: <input name=mail_ccn_roles tal:attributes="value python: ','.join(here.mail_ccn_roles)"><br>
+                mail ccn groups list: <input name=mail_ccn_groups tal:attributes="value python: ','.join(here.mail_ccn_groups)"><br>
+                <p>
+                
+                mail header dtml: <br>
+                <input size=50 name=mail_header_dtml type=text tal:define="mail_header_dtml here/mail_header_dtml/document_src|nothing" tal:attributes="value mail_header_dtml" /><br>
+                <p>
+                mail head and css dtml: <br><textarea cols=80 rows=5 name=mail_head_css_dtml tal:define="mail_head_css_dtml here/mail_head_css_dtml/document_src|nothing" tal:content="mail_head_css_dtml|nothing"></textarea><br>
+                <p>
+                mail body dtml: <br><textarea cols=80 rows=10 name=mail_body_dtml tal:define="mail_body_dtml here/mail_body_dtml/document_src|nothing" tal:content="mail_body_dtml|nothing"></textarea><br>
+                <input size=50 type=submit value="Change" name=manage_editMailerFor:method>
+            </form>
+        </fieldset>
+    </ol>
+
+<h1 tal:replace="structure here/manage_page_footer">Footer</h1>
+</html>

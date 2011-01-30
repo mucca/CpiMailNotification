@@ -1,0 +1,5 @@
+- implements the mail send by roles on the object
+- move the method of resolve roles and groups from the Mailer to the Mailnotification_tool
+- merge _resolveMailTOAddreses,_resolveMailCCAddreses,_resolveMailCCNAddreses in a single method 
+- change name from CCN to BCC
+- verify that BCC work

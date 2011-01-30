@@ -1,0 +1,32 @@
+<html tal:omit-tag="">
+<h1 tal:replace="structure here/manage_page_header">Header</h1>
+<h2
+  tal:define="manage_tabs_message options/manage_tabs_message | request/manage_tabs_message | nothing"
+  tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<span  tal:define="selectedMailer here/REQUEST/form/selected_mailer;
+                                selectedWorkflow python:here.portal_workflow[selectedMailer] " 
+                                tal:condition="selectedMailer" >
+                                
+    <h2> Add Mailer for <asd tal:replace="selectedMailer" /> </h2>
+    
+    <ol>
+            <form tal:attributes="action here/absolute_url">
+                <p>
+                <input type=hidden name=selected_workflow tal:attributes="value selectedMailer">
+                transition id : <input name=title> <br>
+                mail transition : 
+                    <select name="selected_transition">
+                        <tal:block tal:repeat="item selectedWorkflow/transitions/getChildNodes">
+                            <option tal:content="python: item.id" />
+                        </tal:block>
+                    </select><br>
+                <p>
+                <input size=50 type=submit value="Add" name=manage_addMailerFor:method>
+            </form>
+    </ol>
+</span>
+
+
+<h1 tal:replace="structure here/manage_page_footer">Footer</h1>
+</html>

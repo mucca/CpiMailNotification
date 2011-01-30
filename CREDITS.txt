@@ -1,0 +1,7 @@
+Products Created by OpenCpi a division of Cpi Progetti Spa
+http://www.cpiprogetti.it
+
+Developers (Plone-Team)
+
+Roberto Fontanarosa ( robertofontanarosa-AT-gmail.com )
+Saverio Mucci ( saver.mucci-AT-gmail )
